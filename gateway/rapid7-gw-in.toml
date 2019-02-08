@@ -16,7 +16,7 @@
 
 ### Where and how to accept connections locally
 [local]
-	protocol = "tcp"
+	protocol = "faspstream"
 		host = "rapid7-10g"
 		port = 4141
 
@@ -34,7 +34,7 @@
 	async = true
 	pattern = "%+"
 	level = "info"
-	default_sinks = ["console", "logfile"]
+	default_sinks = ["logfile"]
 
     [[logging.sink]]
         name = "console"

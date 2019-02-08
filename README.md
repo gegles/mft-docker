@@ -46,18 +46,18 @@ docker exec -ti QM2  setup_fte_agent.sh A2
 ```shell
 docker run --volume ~/volumes/A1:/mnt/A1 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.2 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM1  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A1 -d --name=A1 mftagent
 
-docker run --volume ~/volumes/A2:/mnt/A2 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.1 --env MQ_COOR_QMGR_PORT=1515 --env MQ_QMGR_NAME=QM2  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
+docker run --volume ~/volumes/A2:/mnt/A2 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.1 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM2  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
 ```
 
 ## Generate large file
 
 On the A1 host:
 ```shell
-dd if=/dev/zero iflag=count_bytes count=1G bs=1M of=~/volumes/A1/1GB; sync
+dd if=/dev/zero iflag=count_bytes count=1G bs=1M of=/tmp/1GB
 ```
 
 ## Transfer a file
 ```shell
-docker exec -ti A1 fteCreateTransfer -p QM1 -sa A1 -sm QM1 -da A2 -dm QM2 -df /mnt/A1/1GB /mnt/A2/1GB
+docker exec -ti A1 fteCreateTransfer -p QM1 -sa A1 -sm QM1 -da A2 -dm QM2 -df /tmp/1GB /tmp/1GB
 ```
 

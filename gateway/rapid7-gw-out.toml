@@ -22,7 +22,7 @@
 
 ### Where and how to forward connections
 [forward]
-	protocol = "tcp"
+	protocol = "faspstream"
 		host = "rapid8-10g"
 		port = 4141
 
@@ -34,7 +34,7 @@
 	async = true
 	pattern = "%+"
 	level = "info"
-	default_sinks = ["console", "logfile"]
+	default_sinks = ["logfile"]
 
     [[logging.sink]]
         name = "console"
