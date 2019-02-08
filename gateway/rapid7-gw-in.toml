@@ -17,7 +17,7 @@
 ### Where and how to accept connections locally
 [local]
 	protocol = "tcp"
-		host = "0.0.0.0"
+		host = "rapid7-10g"
 		port = 4141
 
 ### Where and how to forward connections
