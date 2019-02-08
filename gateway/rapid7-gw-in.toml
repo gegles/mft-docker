@@ -18,7 +18,7 @@
 [local]
 	protocol = "tcp"
 		host = "0.0.0.0"
-		port = 5151
+		port = 4141
 
 ### Where and how to forward connections
 [forward]
