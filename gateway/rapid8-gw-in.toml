@@ -18,13 +18,13 @@
 [local]
 	protocol = "tcp"
 		host = "0.0.0.0"
-		port = 1515
+		port = 5151
 
 ### Where and how to forward connections
 [forward]
 	protocol = "tcp"
-		host = "rapid8-10g"
-		port = 5151
+		host = "172.17.0.2"   # QM2 docker ip
+		port = 1414
 
 #######################
 ### LOGGING SETTINGS
@@ -43,7 +43,7 @@
     [[logging.sink]]
         name = "logfile"
         type = "file"
-        path = "/home/gegles/log/rapid7-gw-out"
+        path = "/home/gegles/log/rapid8-gw-in"
 
     [[logging.logger]]
         name = "fasp.io-gateway"

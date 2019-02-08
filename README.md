@@ -46,7 +46,7 @@ docker exec -ti QM2  setup_fte_agent.sh A2
 ```shell
 docker run --volume ~/volumes/A1:/mnt/A1 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.2 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM1  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A1 -d --name=A1 mftagent
 
-docker run --volume ~/volumes/A2:/mnt/A2 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=192.168.100.7 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM2  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
+docker run --volume ~/volumes/A2:/mnt/A2 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.1 --env MQ_COOR_QMGR_PORT=1515 --env MQ_QMGR_NAME=QM2  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
 ```
 
 ## Generate large file
