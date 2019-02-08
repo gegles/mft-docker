@@ -47,7 +47,7 @@
 
     [[logging.logger]]
         name = "fasp.io-gateway"
-        level = "info"
+        level = "debug"
 
     [[logging.logger]]
         name = "fasp.io-cpp"
