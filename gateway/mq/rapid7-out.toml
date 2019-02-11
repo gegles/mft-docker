@@ -23,7 +23,7 @@
 ### Where and how to forward connections
 [forward]
 	protocol = "faspstream"
-		host = "rapid7-10g"
+		host = "rapid8-10g"
 		port = 4141
 
 #######################
@@ -43,7 +43,7 @@
     [[logging.sink]]
         name = "logfile"
         type = "file"
-        path = "/home/gegles/log/rapid8-gw-out"
+        path = "/home/gegles/logs/mq/rapid7-out.log"
 
     [[logging.logger]]
         name = "fasp.io-gateway"

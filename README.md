@@ -13,16 +13,10 @@ docker build -t mftagent agent
 docker volume create qm1data
 docker volume create qm2data
 ```
-### Same machine
-```shell
-docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 --publish 11414:1414 --publish 19443:9443 --volume qm1data:/mnt/mqm --detach --name=QM1 mftmgr
-docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM2 --publish 21414:1414 --publish 29443:9443 --volume qm2data:/mnt/mqm --detach --name=QM2 mftmgr
-```
 
-### Separate servers
 ```shell
-docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 --publish 1414:1414 --publish 9443:9443 --volume qm1data:/mnt/mqm --detach --name=QM1 mftmgr
-docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM2 --publish 1414:1414 --publish 9443:9443 --volume qm2data:/mnt/mqm --detach --name=QM2 mftmgr
+docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM1 --publish 1515:1414 --publish 9443:9443 --volume qm1data:/mnt/mqm --detach --name=QM1 mftmgr
+docker run --env LICENSE=accept --env MQ_QMGR_NAME=QM2 --publish 1515:1414 --publish 9443:9443 --volume qm2data:/mnt/mqm --detach --name=QM2 mftmgr
 ```
 
 ## Setup FTE Coordination
@@ -44,9 +38,15 @@ docker exec -ti QM2  setup_fte_agent.sh A2
 ## Run FTE Agents
 
 ```shell
+docker run --env MQ_COOR_QMGR_NAME=QM1 --env MQ_COOR_QMGR_HOST=rapid7.aspera.us --env MQ_COOR_QMGR_PORT=1515 --env MQ_QMGR_NAME=QM1 --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A1 -d --name=A1 mftagent
+
+docker run --env MQ_COOR_QMGR_NAME=QM1 --env MQ_COOR_QMGR_HOST=rapid7.aspera.us --env MQ_COOR_QMGR_PORT=1515 --env MQ_QMGR_NAME=QM2 --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
+
+
 docker run --volume ~/volumes/A1:/mnt/A1 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.2 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM1  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A1 -d --name=A1 mftagent
 
 docker run --volume ~/volumes/A2:/mnt/A2 --env MQ_COOR_QMGR_NAME=QM1  --env MQ_COOR_QMGR_HOST=172.17.0.1 --env MQ_COOR_QMGR_PORT=1414 --env MQ_QMGR_NAME=QM2  --env MQ_QMGR_HOST=172.17.0.2 --env MQ_QMGR_PORT=1414 --env MQ_QMGR_CHL=MFT.SVRCONN --env MFT_AGENT_NAME=A2 -d --name=A2 mftagent
+
 ```
 
 ## Generate large file

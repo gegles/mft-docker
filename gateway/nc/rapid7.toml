@@ -18,13 +18,13 @@
 [local]
 	protocol = "tcp"
 		host = "172.17.0.1"
-		port = 1414
+		port = 12345
 
 ### Where and how to forward connections
 [forward]
 	protocol = "faspstream"
 		host = "rapid8-10g"
-		port = 4141
+		port = 54321
 
 #######################
 ### LOGGING SETTINGS
@@ -43,7 +43,7 @@
     [[logging.sink]]
         name = "logfile"
         type = "file"
-        path = "/home/gegles/log/rapid7-gw-out"
+        path = "/home/gegles/logs/nc/rapid7.log"
 
     [[logging.logger]]
         name = "fasp.io-gateway"
