@@ -23,7 +23,7 @@
 ### Where and how to forward connections
 [forward]
 	protocol = "tcp"
-		host = "172.17.0.2"   # QM2 docker ip
+		host = "172.17.0.1"
 		port = 12345
 
 #######################
