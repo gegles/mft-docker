@@ -1,0 +1,58 @@
+#######################
+## GATEWAY SETTINGS
+#######################
+
+[general]
+	### Number of threads to handle all the connections (Recommended: ~ number of cores)
+	thread_count = 1
+	license = "/home/gegles/etc/aspera-license"
+
+[security]
+	cert = "/home/gegles/etc/cert.pem"
+	cert_chain = "/home/gegles/etc/cert_chain.pem"
+	cert_key = "/home/gegles/etc/cert_key.pem"
+	ca_certs = "/home/gegles/etc/ca_certs.pem"
+	encryption_disabled = true
+
+### Where and how to accept connections locally
+[local]
+	protocol = "tcp"
+		host = "172.17.0.1"
+		port = 1414
+
+### Where and how to forward connections
+[forward]
+	protocol = "tcp"
+		host = "rapid8-10g"
+		port = 4141
+
+#######################
+### LOGGING SETTINGS
+#######################
+
+[logging]
+	async = true
+	pattern = "%+"
+	level = "info"
+	default_sinks = ["logfile"]
+
+    [[logging.sink]]
+        name = "console"
+        type = "stdout"
+		color = true
+    [[logging.sink]]
+        name = "logfile"
+        type = "file"
+        path = "/home/gegles/logs/mq/rapid7-out.log"
+
+    [[logging.logger]]
+        name = "fasp.io-gateway"
+        level = "debug"
+
+    [[logging.logger]]
+        name = "fasp.io-cpp"
+        level = "info"
+
+    [[logging.logger]]
+        name = "fasp.io-c"
+        level = "info"
