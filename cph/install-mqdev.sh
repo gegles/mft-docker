@@ -59,6 +59,11 @@ $RHEL && yum -y install \
   tar \
   util-linux
 
+$UBUNTU && apt-get update && \
+           apt-get install -y \
+                ca-certificates \
+                curl
+
 # Download and extract the MQ installation files
 DIR_EXTRACT=/tmp/mq
 mkdir -p ${DIR_EXTRACT}
